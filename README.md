@@ -1,5 +1,7 @@
 # GSplatLoc: Grounding Keypoint Descriptors into 3D Gaussian Splatting for Improved Visual Localization
-Gennady Sidorov, Malik Mohrat, Ksenia Lebedeva, Ruslan Rakhimov, Sergey Kolyubin
+[[Paper]](https://arxiv.org/abs/2409.16502) [[Project Page]](https://gsplatloc.github.io/) [[Video]](https://www.youtube.com/watch?v=3UKQQPLlqqg)
+
+**Authors:** Gennady Sidorov, Malik Mohrat, Ksenia Lebedeva, Ruslan Rakhimov, Sergey Kolyubin
 
 ![SplatLoc](./assets/pipeline.png)
 
@@ -209,3 +211,22 @@ This project builds upon and extends the work of several open-source projects:
 - [ACE](https://github.com/nianticlabs/ace)
 
 We are deeply grateful to the authors and contributors of these projects for making their code available to the research community.
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{sidorov2024gsplatlocgroundingkeypointdescriptors,
+      title={GSplatLoc: Grounding Keypoint Descriptors into 3D Gaussian Splatting for Improved Visual Localization}, 
+      author={Gennady Sidorov and Malik Mohrat and Ksenia Lebedeva and Ruslan Rakhimov and Sergey Kolyubin},
+      year={2024},
+      eprint={2409.16502},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2409.16502}, 
+}</code></pre>
+  </div>
+</section>
+
+
+
