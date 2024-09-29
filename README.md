@@ -32,7 +32,7 @@ pip install -r requirements.txt
 Submodules
 
 ```shell
-pip install submodules/diff-gaussian-rasterization-feature # Rasterizer for RGB, n-dim feature, depth
+pip install submodules/diff-gaussian-rasterization # Rasterizer for RGB, n-dim feature, depth
 pip install submodules/simple-knn
 ```
 
@@ -44,7 +44,7 @@ Below are the instructions to download and prepare the datasets.
 
 ## 7Scenes
 
-You can use the `datasets/setup_7scenes.py` script to download the data.
+You can use the `datasets/setup_7scenes.py` script to download and prepare the data.
 We experimented with _Pseudo Ground Truth (PGT)_ camera poses obtained after running SfM on the scenes, as they are more precise than the original D-SLAM poses.
 
 To download and prepare the datasets using the PGT poses:
@@ -71,12 +71,13 @@ unzip 7scenes_reference_models.zip && rm 7scenes_reference_models.zip
 
 ## Cambridge Landmarks
 
-Here you can download and prepare the Cambridge Landmarks dataset using the script:
+You can download and prepare the Cambridge Landmarks dataset using the script:
 
 ```shell
 cd datasets
+
 # Downloads the data to datasets/Cambridge_{GreatCourt, KingsCollege, ...}
-./setup_cambridge.py
+python datasets/setup_cambridge.py
 ```
 
 # Training 
@@ -164,8 +165,8 @@ python train.py -s data/DATASET_NAME -m output/OUTPUT_NAME --iterations 7000
 </details>
 
 
-In this work, we don't use the feature-3dgs speed-up module.
-The diff-gaussian-rasterization module is designed for 64-dimensional XFeat descriptors, but it can accommodate any 64-dimensional feature vector.
+In this work, we didn't use the feature-3dgs speed-up module.
+The `diff-gaussian-rasterization` module is designed for 64-dimensional XFeat descriptors, but it can accommodate any 64-dimensional feature vector.
 
 If you wish to use a different feature dimension from a different encoder, you can modify the `NUM_SEMANTIC_CHANNELS` parameter in the `config.h` file within the cuda-rasterizer directory and rebuild the module.
 
