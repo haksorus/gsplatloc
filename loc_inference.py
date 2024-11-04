@@ -98,9 +98,9 @@ def localize_set(model_path, name, views, gaussians, pipeline, background, args)
             prior_rErr.append(rotError)
             prior_tErr.append(transError)
 
-            c2w = torch.eye(4, 4, device='cuda')
-            c2w[:3, :3] = torch.from_numpy(R).float()
-            c2w[:3, 3] = torch.from_numpy(t[:, 0]).float()
+            w2c = torch.eye(4, 4, device='cuda')
+            w2c[:3, :3] = torch.from_numpy(R).float()
+            w2c[:3, 3] = torch.from_numpy(t[:, 0]).float()
             
             # Update the view's pose
             view.update_RT(R.T, t[:,0])
@@ -112,8 +112,8 @@ def localize_set(model_path, name, views, gaussians, pipeline, background, args)
             render_im = render_pkg["render"]
             depth = render_pkg["depth"]
 
-            quat_opt = rotmat2qvec_tensor(c2w[:3, :3].clone()).view([4]).to(c2w.device)
-            t_opt = c2w[:3, 3].clone()
+            quat_opt = rotmat2qvec_tensor(w2c[:3, :3].clone()).view([4]).to(w2c.device)
+            t_opt = w2c[:3, 3].clone()
 
             optimizer = optim.Adam([quat_opt.requires_grad_(True), 
                                     t_opt.requires_grad_(True)], lr=args.warp_lr)
@@ -128,7 +128,7 @@ def localize_set(model_path, name, views, gaussians, pipeline, background, args)
                                             qr=gt_im,
                                             quat_opt=quat_opt,
                                             t_opt=t_opt,
-                                            pose=c2w,
+                                            pose=w2c,
                                             K=torch.from_numpy(K).float().to('cuda'),
                                             depth=depth) 
         

@@ -67,7 +67,7 @@ def rotmat2qvec_tensor(R):
         qvec *= -1
     return qvec[[3, 0, 1, 2]]
 
-def from_cam_tensor_to_c2w(cam_tensor):
+def from_cam_tensor_to_w2c(cam_tensor):
     R = qvec2rotmat_tensor(cam_tensor[:4])
     t = cam_tensor[4:].unsqueeze(1)
     

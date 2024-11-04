@@ -42,7 +42,7 @@ def differentiable_warp(image, depth, warp, K):
 # Use in compute_warping_loss
 def compute_warping_loss(vr, qr, quat_opt, t_opt, pose, K, depth):
 
-    warp = pose @ from_cam_tensor_to_c2w(torch.cat([quat_opt, t_opt], dim=0)).inverse()
+    warp = pose @ from_cam_tensor_to_w2c(torch.cat([quat_opt, t_opt], dim=0)).inverse()
     
     warped_image = differentiable_warp(vr.unsqueeze(0), depth.unsqueeze(0), warp.unsqueeze(0), K.unsqueeze(0))
     loss = F.mse_loss(warped_image, qr.unsqueeze(0))
@@ -52,7 +52,7 @@ def compute_warping_loss(vr, qr, quat_opt, t_opt, pose, K, depth):
 
 def compute_warping_loss_kornia(vr, qr, quat_opt, t_opt, pose, K, depth):
 
-    warp = pose @ from_cam_tensor_to_c2w(torch.cat([quat_opt, t_opt], dim=0)).inverse()
+    warp = pose @ from_cam_tensor_to_w2c(torch.cat([quat_opt, t_opt], dim=0)).inverse()
     
     warped_image = warp_frame_depth(image_src=vr.unsqueeze(0),
                                     depth_dst=depth.unsqueeze(0),
